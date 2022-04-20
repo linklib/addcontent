@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+provider = "prisma-client-js"
+}
+
+datasource db {
+provider = "sqlite"
+url = "file:./dev.db"
+}
+
+model Block {
+id Int @id @default(autoincrement())
+createdAt DateTime @default(now())
+position Int
+contents Content[]
+}
+
+model Content {
+id Int @id @default(autoincrement())
+createdAt DateTime @default(now())
+title String
+imgpath String
+text String
+block Block? @relation(fields: [blockId], references: [id])
+blockId Int?
+}

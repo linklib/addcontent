@@ -1,0 +1,17 @@
+-- CreateTable
+CREATE TABLE "Block" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "position" INTEGER NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Content" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "title" TEXT NOT NULL,
+    "imgpath" TEXT NOT NULL,
+    "text" TEXT NOT NULL,
+    "blockId" INTEGER,
+    CONSTRAINT "Content_blockId_fkey" FOREIGN KEY ("blockId") REFERENCES "Block" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+);
